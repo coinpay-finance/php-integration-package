@@ -1,0 +1,22 @@
+{
+    "name": "coinpay/php-integration",
+    "description": "php package for coin payment finance",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "CoinPay",
+            "email": "samholding@coinpay.finance"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Coinpay\\Finance\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.0|^8.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    }
+}
