@@ -23,7 +23,7 @@ class CoinPayGateway
      * @param string|null $description Description of the payment (e.g. "Payment for order #123").
      * @param string|null $national_code National identification code of the payer.
      *
-     * @return PaymentResponse The response from the CoinPay API, including a payment URL.
+     * @return CoinPayPaymentResponse The response from the CoinPay API, including a payment URL.
      *
      * @throws \Exception If the request fails or the API returns an error.
      */
@@ -35,7 +35,7 @@ class CoinPayGateway
         string $name = null,
         string $description = null,
         string $national_code = null
-    ): PaymentResponse
+    ): CoinPayPaymentResponse
     {
         $data = [
             'amount' => $amount,
@@ -86,7 +86,7 @@ class CoinPayGateway
         $responseBody = json_decode($response, true);
 
         if ($httpCode === 200 && is_array($responseBody) && !empty($responseBody['status']) && !empty($responseBody['url'])) {
-            return new PaymentResponse($responseBody['url'], $responseBody['transaction_id'] ?? 0);
+            return new CoinPayPaymentResponse($responseBody['url'], $responseBody['transaction_id'] ?? 0);
         }
 
         throw new \Exception($responseBody['message'] ?? 'Payment request failed', $httpCode);
